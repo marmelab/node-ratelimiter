@@ -3,8 +3,4 @@
     "env": {
         "mocha": true,
     },
-    "rules": {
-        "indent": [2, 4],
-        "no-multiple-empty-lines": [2, {'max': 2}],
-    },
 }
