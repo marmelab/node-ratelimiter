@@ -81,7 +81,7 @@ export default db => {
         .exec((err, resp) => {
           if (err) return reject(err);
           if (isFirstReplyNull(resp)) return mget(true).then(resolve).catch(reject); // eslint-disable-line no-use-before-define
-          n = n - 1;
+          n--;
           done();
         });
     });
