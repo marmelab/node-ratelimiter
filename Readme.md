@@ -5,7 +5,55 @@
 [![Build Status](https://travis-ci.org/tj/node-ratelimiter.svg)](https://travis-ci.org/tj/node-ratelimiter)
 
 ## Release Notes
-[v3.0.0](https://github.com/marmelab/node-ratelimiter/tree/v3.0.0) - Add multiple adapters support (redis, memory, null)
+[v3.0.0](https://github.com/marmelab/node-ratelimiter/tree/v3.0.0) - **API CHANGE** Added multiple adapters support (redis, memory, null)
+
+In order to migrate to this version, please change the initialization code from:
+
+```js
+var Limiter = require('ratelimiter');
+var limit = new Limiter({ id: id, db: db }); // where db is your redis client
+```
+
+to
+
+```js
+var Limiter = require('ratelimiter');
+var redisAdapter = Limiter.redisAdapter;
+
+var limiter = new Limiter({ id: req.user._id }, redisAdapter(db));
+```
+
+Please note that the `get` method is now read-only, allowing you to get the
+rate-limiting status of the target id without increasing its hits. Please change
+the ratelimit check from:
+
+```js
+limit.get(function(err, limit){
+  ...
+});
+```
+
+to
+
+```js
+limit.newHit(function(err, limit){
+  ...
+});
+```
+
+Both `get` and `newHit` support the old callback style but will return a promise
+when called without specifying a callback allowing the following code:
+
+```js
+limit
+  .newHit()
+  .then(function(limit) {
+    ...
+  })
+  .catch(function(err) {
+    ...
+  });
+```
 
 [v2.1.2](https://github.com/tj/node-ratelimiter/tree/v2.1.2) - [#17](/../../pull/17) by [@waleedsamy](https://github.com/waleedsamy) - Add Travis CI support
 

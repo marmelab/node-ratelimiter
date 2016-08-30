@@ -1,7 +1,7 @@
 {
-  "name": "node-ratelimiter",
+  "name": "ratelimiter",
   "version": "3.0.0",
-  "repository": "marmelab/node-ratelimiter",
+  "repository": "tj/node-ratelimiter",
   "description": "Abstract rate limiter storing its data in redis or memory",
   "keywords": [
     "rate",
@@ -27,7 +27,8 @@
   },
   "license": "MIT",
   "contributors": [
-    "Francois-Guillaume Ribreau <npm@fgribreau.com>"
+    "Francois-Guillaume Ribreau <npm@fgribreau.com>",
+    "Gildas Garcia (@marmelab) <gildas@marmelab.com"
   ],
   "scripts": {
     "compile": "make build",

@@ -1,6 +1,6 @@
+/* eslint-disable */
 var redis = require('redis');
 var Limiter = require('./');
-//var Limiter = nodeRateLimiter.default;
 var redisAdapter = Limiter.redisAdapter;
 
 var limiter = new Limiter({
