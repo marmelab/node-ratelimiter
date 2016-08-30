@@ -24,7 +24,7 @@ var Limiter = require('./limiter').default;
         var limit = new Limiter({
           max: 5,
           id: 'something',
-          db: db
+          db,
         });
         limit.newHit(function(err, res) {
           res.total.should.equal(5);
